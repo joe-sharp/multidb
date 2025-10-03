@@ -22,16 +22,16 @@ module Multidb
 
     def connection(&block)
       if block_given?
-        @connection_handler.retrieve_connection_pool(SPEC_NAME).with_connection(&block)
+        connection_handler.retrieve_connection_pool(SPEC_NAME).with_connection(&block)
       else
-        @connection_handler.retrieve_connection(SPEC_NAME)
+        connection_handler.retrieve_connection(SPEC_NAME)
       end
     end
 
     def disconnect!
-      @connection_handler.clear_all_connections!
+      connection_handler.clear_all_connections!
     end
 
-    attr_reader :name
+    attr_reader :name, :connection_handler
   end
 end
